@@ -2,8 +2,9 @@ import Pagination from "@/Components/Pagination";
 import SelectInput from "@/Components/SelectInput";
 import TableHeading from "@/Components/TableHeading";
 import TextInput from "@/Components/TextInput";
+import { PROJECT_STATUS_CLASS_MAP, PROJECT_STATUS_TEXT_MAP } from "@/constants";
 import Authenticated from "@/Layouts/AuthenticatedLayout";
-import { Head, Link } from "@inertiajs/react";
+import { Head, Link, router } from "@inertiajs/react";
 
 export default function Index({ auth, projects, queryParams = null }) {
   queryParams = queryParams || {};
@@ -162,14 +163,14 @@ export default function Index({ auth, projects, queryParams = null }) {
                           </Link>
                         </th>
                         <td className="px-3 py-2">
-                          {/* <span
+                          <span
                             className={
                               "px-2 py-1 rounded text-white " +
                               PROJECT_STATUS_CLASS_MAP[project.status]
                             }
                           >
                             {PROJECT_STATUS_TEXT_MAP[project.status]}
-                          </span> */}
+                          </span>
                         </td>
                         <td className="px-3 py-2 text-nowrap">
                           {project.created_at}
@@ -186,7 +187,7 @@ export default function Index({ auth, projects, queryParams = null }) {
                             Edit
                           </Link>
                           <button
-                            onClick={(e) => deleteProject(project)}
+                            onClick={() => deleteProject(project)}
                             className="font-medium text-red-600 dark:text-red-500 hover:underline mx-1"
                           >
                             Delete
